@@ -3,6 +3,7 @@ services:
   api:
     build:
       context: .
+    container_name: api
     image: alexandreesl/gatling_lab
     ports:
       - 8080:8080
@@ -26,6 +27,7 @@ services:
       timeout: 3s
       retries: 30
   flyway:
+    container_name: flyway
     image: boxfuse/flyway:5.2.4
     command: -url=jdbc:postgresql://postgres/gatling -user=gatling -password=gatling -connectRetries=60 migrate
     volumes:
@@ -33,6 +35,7 @@ services:
     depends_on:
       - postgres
   gatling:
+    container_name: gatling
     image: denvazh/gatling
     volumes:
       - ./src/gatling/conf:/opt/gatling/conf
