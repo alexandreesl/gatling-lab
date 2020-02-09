@@ -1,0 +1,23 @@
+version: '3'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:10-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: gatling
+      POSTGRES_PASSWORD: gatling
+      POSTGRES_USER: gatling
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+  flyway:
+    image: boxfuse/flyway:5.2.4
+    command: -url=jdbc:postgresql://postgres/gatling -user=gatling -password=gatling -connectRetries=60 migrate
+    volumes:
+      - ./src/main/resources/db/migration:/flyway/sql
+    depends_on:
+      - postgres
