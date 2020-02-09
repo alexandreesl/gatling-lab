@@ -1,0 +1,10 @@
+insert into users(name,phone) values('Alexandre',11938231938);
+insert into users(name,phone) values('John',11938235638);
+insert into users(name,phone) values('Lucebiane',11938239838);
+insert into users(name,phone) values('Maria Odete',11938151938);
+insert into users(name,phone) values('Ana Carolina',11938276938);
+insert into users(name,phone) values('Celina',11938219938);
+insert into users(name,phone) values('Zulmira',11938234338);
+insert into users(name,phone) values('Milton',11938891938);
+insert into users(name,phone) values('Daniela',11938223938);
+insert into users(name,phone) values('Diego',11938290938);
