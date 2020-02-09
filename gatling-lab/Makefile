@@ -1,12 +1,9 @@
 
 dependencies:
-	- docker-compose up -d
+	- docker-compose up -d postgres flyway
 
 run: dependencies
-	- ./gradlew bootRun
+	- ./gradlew build && docker-compose up -d api
 
 test:
-	- docker run -it --rm -v $(PWD)/src/gatling/conf:/opt/gatling/conf \
-      -v $(PWD)/src/gatling/simulations:/opt/gatling/user-files/simulations \
-      -v $(PWD)/src/gatling/results:/opt/gatling/results \
-      denvazh/gatling
+	- docker-compose up gatling

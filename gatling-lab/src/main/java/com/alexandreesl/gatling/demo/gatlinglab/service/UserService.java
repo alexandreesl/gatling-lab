@@ -25,7 +25,11 @@ public class UserService {
     user.ifPresent(value -> userRepository.delete(value));
   }
 
-  public Optional<Users> search(long id) {
+  public Optional<Users> find(long id) {
     return userRepository.findById(id);
+  }
+
+  public Optional<Users> search(String name) {
+    return userRepository.findByName(name).stream().findFirst();
   }
 }

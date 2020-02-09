@@ -21,7 +21,13 @@ public class UserController {
   @GetMapping(path = "/{id}")
   public Users get(@PathVariable("id") long id) {
 
-    return userService.search(id).orElse(new Users());
+    return userService.find(id).orElse(new Users());
+  }
+
+  @GetMapping(path = "/name/{name}")
+  public Users get(@PathVariable("name") String name) {
+
+    return userService.search(name).orElse(new Users());
   }
 
   @PostMapping(path = "/")

@@ -1,5 +1,16 @@
 version: '3'
 services:
+  api:
+    build:
+      context: .
+    image: alexandreesl/gatling_lab
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - JAVA_OPTS=-server -Xms512m -Xmx512m
+    depends_on:
+      - postgres
   postgres:
     container_name: postgres
     image: postgres:10-alpine
@@ -21,3 +32,11 @@ services:
       - ./src/main/resources/db/migration:/flyway/sql
     depends_on:
       - postgres
+  gatling:
+    image: denvazh/gatling
+    volumes:
+      - ./src/gatling/conf:/opt/gatling/conf
+      - ./src/gatling/simulations:/opt/gatling/user-files/simulations
+      - ./src/gatling/results:/opt/gatling/results
+    depends_on:
+      - api
