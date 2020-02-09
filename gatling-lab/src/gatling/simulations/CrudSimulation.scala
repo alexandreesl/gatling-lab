@@ -18,6 +18,16 @@ class CrudSimulation extends Simulation {
     .post("/")
     .body(StringBody("""{ "name": "MytestDummy", "phone":11938284334 }""")).asJson)
     .pause(5)
+    .exec(http("request_patch")
+      .patch("/")
+      .body(StringBody("""{ "id":1, "name": "MytestDummy2", "phone":11938284123 }""")).asJson)
+    .pause(5)
+    .exec(http("request_get_name")
+      .get("/name/MytestDummy"))
+    .pause(5)
+    .exec(http("request_delete")
+      .delete("/1"))
+    .pause(5)
 
 
   setUp( // 9
