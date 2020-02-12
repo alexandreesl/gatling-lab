@@ -7,8 +7,9 @@ class SimulationRunner extends Simulation with CrudSimulation with ReadOperation
 
   setUp(
     crudScn.inject(atOnceUsers(1)),
-    readScn.inject(constantUsersPerSec(50) during (5 minutes)),
-    writeScn.inject(rampUsers(200) during (2 minutes))
+    readScn.inject(constantUsersPerSec(250) during (5 minutes)),
+    writeScn.inject(rampUsers(600) during (2 minutes))
   ).protocols(httpProtocol)
+
 
 }
